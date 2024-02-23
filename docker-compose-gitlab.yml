@@ -1,28 +1,25 @@
-version: '3.9'
-
+version: '3.6'
 services:
-
   gitlab:
     image: gitlab/gitlab-ee:16.8.2-ee.0
     container_name: gitlab
     restart: always
-    hostname: 'gitlab.space-cats.com'
+    hostname: 'gitlab.example.com'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
-        external_url 'https://gitlab.space-cats.com'
-        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        external_url 'https://gitlab.example.com'
     ports:
-      - '127.0.0.1:8080:80'
-      - '127.0.0.1:8443:443'
-      - '2224:22'
+      - '80:80'
+      - '443:443'
+      - '22:22'
     volumes:
-      - './config:/etc/gitlab'
-      - './logs:/var/log/gitlab'
-      - './data:/var/opt/gitlab'
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
     shm_size: '256m'
     deploy:
       resources:
         limits:
-          cpus: '2'
+          cpus: '1.5'
           memory: 3GB
