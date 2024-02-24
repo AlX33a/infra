@@ -24,7 +24,7 @@ services:
       resources:
         limits:
           cpus: '2'
-          memory: 3GB
+          memory: 3.5GB
     networks:
       - nginx
 
