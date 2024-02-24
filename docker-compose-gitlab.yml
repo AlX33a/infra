@@ -23,7 +23,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.5'
+          cpus: '2'
           memory: 3GB
     networks:
       - nginx
